@@ -1,0 +1,38 @@
+{
+    "title": "Module 0: What is NeRF?",
+    "questions": [
+        {
+            "question": "What does NeRF stand for?",
+            "options": [
+                "Neural Radiance Fields",
+                "Neural Rendering Framework",
+                "Network for Radiance Functions",
+                "Neuro-Encoded Rendering Format"
+            ],
+            "correct": 0,
+            "explanation": "NeRF stands for Neural Radiance Fields. It represents a 3D scene as a continuous radiance field stored in the weights of a neural network."
+        },
+        {
+            "question": "How does NeRF store the 3D scene?",
+            "options": [
+                "As a voxel grid in GPU memory",
+                "As a triangle mesh file",
+                "As the weights of a neural network",
+                "As a point cloud with colors"
+            ],
+            "correct": 2,
+            "explanation": "NeRF's key innovation is storing the entire scene as neural network weights. The network IS the scene — you query it at (x,y,z) and it returns density and color."
+        },
+        {
+            "question": "Approximately how many MLP queries are needed to render a single 800×800 image with 128 samples per ray?",
+            "options": [
+                "About 640,000",
+                "About 8 million",
+                "About 82 million",
+                "About 1 billion"
+            ],
+            "correct": 2,
+            "explanation": "800×800 = 640,000 pixels × 128 samples per ray = 81,920,000 ≈ 82 million MLP queries per frame. This is why NeRF is computationally expensive!"
+        }
+    ]
+}
