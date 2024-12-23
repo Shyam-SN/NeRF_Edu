@@ -1,0 +1,38 @@
+{
+    "title": "Module 1: Camera & Projection",
+    "questions": [
+        {
+            "question": "What happens to the projected 2D position of a 3D point as its depth Z increases (moves further from camera)?",
+            "options": [
+                "It moves further from the image center",
+                "It moves closer to the image center",
+                "It stays at the same position",
+                "It disappears from the image"
+            ],
+            "correct": 1,
+            "explanation": "From the perspective projection equation x = f·X/Z, as Z increases, the projected position x shrinks toward zero (the center). This is perspective foreshortening — why railroad tracks appear to converge."
+        },
+        {
+            "question": "In NeRF, why do we use INVERSE projection (2D → 3D rays) instead of forward projection (3D → 2D)?",
+            "options": [
+                "It's faster to compute",
+                "Because we need to shoot rays into the scene to query the neural network at 3D points",
+                "Because the intrinsic matrix K is not invertible",
+                "To avoid floating point errors"
+            ],
+            "correct": 1,
+            "explanation": "NeRF's neural network lives in 3D space. For each pixel, we must generate a ray and sample 3D points along it to query the MLP for density and color. This requires going from 2D pixels back to 3D rays."
+        },
+        {
+            "question": "If fx = 500px, cx = 320px, and a point is at (2, 1, -5) in camera space, what is its pixel column u?",
+            "options": [
+                "u = 120",
+                "u = 520",
+                "u = 200",
+                "u = 320"
+            ],
+            "correct": 1,
+            "explanation": "u = fx × X / |Z| + cx = 500 × 2/5 + 320 = 200 + 320 = 520."
+        }
+    ]
+}
