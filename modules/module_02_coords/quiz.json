@@ -1,0 +1,38 @@
+{
+    "title": "Module 2: Coordinate Systems",
+    "questions": [
+        {
+            "question": "When transforming a ray direction from camera space to world space, we multiply by R (rotation) but NOT t (translation). Why?",
+            "options": [
+                "Translation is always zero in NeRF",
+                "Because direction vectors have no position — adding a position would change where the arrow is, not which way it points",
+                "Because t is only used for color calculations",
+                "Translation is applied later in the pipeline"
+            ],
+            "correct": 1,
+            "explanation": "A direction vector represents an orientation, not a location. Translation shifts position, which is meaningless for a pure direction. Only rotation changes where a direction points."
+        },
+        {
+            "question": "What does the c2w (camera-to-world) matrix encode?",
+            "options": [
+                "The camera's intrinsic parameters (focal length, principal point)",
+                "The camera's position and orientation in the world",
+                "The neural network weights",
+                "The image resolution"
+            ],
+            "correct": 1,
+            "explanation": "The c2w matrix encodes the camera's extrinsic parameters: R (rotation/orientation) tells you where the camera is looking, and t (translation) tells you where the camera is positioned in the world."
+        },
+        {
+            "question": "In the c2w matrix, the columns of the rotation matrix R represent what?",
+            "options": [
+                "The eigenvalues of the transformation",
+                "The camera's local X, Y, Z axes expressed in world coordinates",
+                "The pixel dimensions of the image",
+                "The focal lengths in each direction"
+            ],
+            "correct": 1,
+            "explanation": "Column 1 of R = camera's 'right' direction in world coords, Column 2 = camera's 'up', Column 3 = camera's 'backward'. The rotation matrix IS the camera's orientation."
+        }
+    ]
+}
