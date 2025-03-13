@@ -1,0 +1,38 @@
+{
+    "title": "Module 3: Linear Algebra",
+    "questions": [
+        {
+            "question": "What do the columns of a 2×2 matrix represent geometrically?",
+            "options": [
+                "The eigenvalues of the matrix",
+                "The new positions of the standard basis vectors î and ĵ after transformation",
+                "The diagonal entries",
+                "The singular values"
+            ],
+            "correct": 1,
+            "explanation": "Column 1 shows where î = [1,0] lands, Column 2 shows where ĵ = [0,1] lands. Every other vector follows as a linear combination of these transformed basis vectors."
+        },
+        {
+            "question": "What happens if a matrix has determinant = 0?",
+            "options": [
+                "The transformation is a rotation",
+                "The space is compressed to a lower dimension (information is destroyed)",
+                "The matrix is the identity",
+                "All eigenvalues are positive"
+            ],
+            "correct": 1,
+            "explanation": "Determinant 0 means the transformation collapses space (e.g., squishes 2D down to a line or a point). The matrix is not invertible — you can't undo the transformation because information was lost."
+        },
+        {
+            "question": "Why are eigenvalues of the Hessian matrix relevant to training NeRF?",
+            "options": [
+                "They determine the image resolution",
+                "They control the curvature of the loss landscape — wildly different eigenvalues cause optimization instability",
+                "They set the learning rate",
+                "They determine the number of layers"
+            ],
+            "correct": 1,
+            "explanation": "When eigenvalues differ by orders of magnitude (e.g., 0.001 vs 1000), gradient descent oscillates in the high-curvature direction and barely moves in the low-curvature one. This is the condition number problem that Positional Encoding helps mitigate."
+        }
+    ]
+}
