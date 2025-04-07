@@ -1,0 +1,38 @@
+{
+    "title": "Module 4: Ray Tracing & Sampling",
+    "questions": [
+        {
+            "question": "What is the parametric equation of a ray?",
+            "options": [
+                "r(t) = o × d",
+                "r(t) = o + t · d, where t ∈ [t_near, t_far]",
+                "r(t) = o - t · d",
+                "r(t) = d / t + o"
+            ],
+            "correct": 1,
+            "explanation": "A ray is a line starting at origin o, extending in direction d. The parameter t controls how far along the ray you travel. At t=0 you're at the camera, at t=5 you're 5 units into the scene."
+        },
+        {
+            "question": "Why does NeRF use stratified (jittered) sampling instead of uniform sampling?",
+            "options": [
+                "Stratified sampling is faster to compute",
+                "To prevent the network from overfitting to fixed sample locations, which causes aliasing artifacts",
+                "Because uniform sampling doesn't work mathematically",
+                "To reduce the number of samples needed"
+            ],
+            "correct": 1,
+            "explanation": "With uniform sampling at fixed positions, the network learns to 'cheat' by only placing density at those exact locations. Stratified jitter ensures the network sees continuous coverage over many training iterations, learning a smooth 3D representation."
+        },
+        {
+            "question": "Why would hierarchical sampling (coarse + fine) be beneficial?",
+            "options": [
+                "It makes the code simpler",
+                "Because most of the ray passes through empty air, so uniform samples are wasted — hierarchical sampling concentrates samples where density is high",
+                "It reduces the total number of samples",
+                "The original NeRF doesn't use hierarchical sampling"
+            ],
+            "correct": 1,
+            "explanation": "A coarse pass with 64 samples identifies where density exists. Then a fine pass adds 128 more samples concentrated in those regions. This focuses computation where it matters instead of wasting queries on empty air."
+        }
+    ]
+}
