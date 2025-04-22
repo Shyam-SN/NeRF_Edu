@@ -1,0 +1,38 @@
+{
+    "title": "Module 5: Volume Rendering",
+    "questions": [
+        {
+            "question": "What does Transmittance T(t) represent?",
+            "options": [
+                "The color at point t",
+                "The probability that light travels from the camera to depth t without hitting anything",
+                "The density at point t",
+                "The distance between samples"
+            ],
+            "correct": 1,
+            "explanation": "Transmittance T(t) = exp(-∫σ ds) represents the accumulated probability of 'not being blocked' up to depth t. It starts at 1 (nothing blocking) and decreases as the ray encounters density. This is the Beer-Lambert Law."
+        },
+        {
+            "question": "If Sample 1 has extremely high density (solid wall), what happens to the rendering weights of Samples 2, 3, 4?",
+            "options": [
+                "They increase to compensate",
+                "They stay the same",
+                "They drop to approximately zero because they are occluded",
+                "They become negative"
+            ],
+            "correct": 2,
+            "explanation": "When α₁ ≈ 1 (solid wall), T₂ = (1 - α₁) ≈ 0. Since weight = T × α, all subsequent weights become ~0. This is how NeRF naturally handles occlusion — you can't see through solid objects."
+        },
+        {
+            "question": "In the discrete volume rendering equation, what is alpha (αᵢ)?",
+            "options": [
+                "The transmittance at sample i",
+                "The probability that the ray stops exactly at sample i: αᵢ = 1 - exp(-σᵢ · δᵢ)",
+                "The color at sample i",
+                "The distance to the next sample"
+            ],
+            "correct": 1,
+            "explanation": "Alpha converts continuous density σ and distance δ into a discrete stopping probability. If σ=0 (air), α=0. If σ=∞ (rock), α=1. It's the bridge between the continuous Beer-Lambert law and discrete computation."
+        }
+    ]
+}
