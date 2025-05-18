@@ -1,0 +1,38 @@
+{
+    "title": "Module 6: Neural Networks (MLP)",
+    "questions": [
+        {
+            "question": "Why is NeRF's density σ view-INDEPENDENT but color (r,g,b) is view-DEPENDENT?",
+            "options": [
+                "To save computation",
+                "Because physical matter doesn't disappear when you walk around it (density is fixed), but color changes with viewing angle due to specular reflections",
+                "Because the paper arbitrarily chose this design",
+                "Because σ is always positive"
+            ],
+            "correct": 1,
+            "explanation": "A rock has the same density from every angle — geometry is view-independent. But a shiny apple looks different from different angles (specular highlights). Separating them enforces physical correctness: geometry stays fixed, only appearance changes."
+        },
+        {
+            "question": "What would happen if the MLP had NO non-linear activation functions (no ReLU)?",
+            "options": [
+                "It would train faster",
+                "It would only represent linear functions (flat planes), because stacking linear operations is still linear",
+                "It would be more accurate",
+                "It would use less memory"
+            ],
+            "correct": 1,
+            "explanation": "Without non-linearity, the entire 8-layer network collapses to y = W·x + b (a single linear transformation). This can only represent flat planes — no curved surfaces, no complex geometry. ReLU is what gives neural networks their expressive power."
+        },
+        {
+            "question": "What is the purpose of the skip connection at layer 4 in NeRF's MLP?",
+            "options": [
+                "To make the network wider",
+                "To help gradient flow during training and let the network 'remember' raw coordinates deep in the network",
+                "To reduce the parameter count",
+                "To add positional encoding"
+            ],
+            "correct": 1,
+            "explanation": "After 4 layers of non-linear transformations, the raw coordinate information can be lost. The skip connection concatenates the original input with the layer-4 features, helping gradients flow and preserving positional information."
+        }
+    ]
+}
