@@ -1,0 +1,38 @@
+{
+    "title": "Module 7: Positional Encoding",
+    "questions": [
+        {
+            "question": "What is 'spectral bias' in neural networks?",
+            "options": [
+                "The tendency to overfit to training data",
+                "The tendency of MLPs to learn low-frequency (smooth) features first and struggle with high-frequency (sharp) details",
+                "A bias in the color spectrum of rendered images",
+                "The preference for certain learning rates"
+            ],
+            "correct": 1,
+            "explanation": "Spectral bias means standard MLPs naturally prioritize smooth, broad patterns and fail to capture fine details. Without positional encoding, NeRF renders look blurry — like being covered in vaseline."
+        },
+        {
+            "question": "If we encode a 3D coordinate (x,y,z) with L=10 frequency bands, what is the output dimension?",
+            "options": [
+                "30 dimensions",
+                "60 dimensions",
+                "63 dimensions (3 × (1 + 2×10))",
+                "10 dimensions"
+            ],
+            "correct": 2,
+            "explanation": "For each of the 3 coordinates: 1 (original) + 2×L (sin and cos at L frequencies) = 21 features. Total: 3 × 21 = 63 dimensions. This high-dimensional encoding gives the network 'strings tuned to different frequencies.'"
+        },
+        {
+            "question": "Why does NeRF use fewer frequency bands (L=4) for viewing direction than for position (L=10)?",
+            "options": [
+                "To save computation",
+                "Because viewing direction affects color smoothly (specular highlights are broad), while position needs high frequencies for sharp geometry edges",
+                "Because direction is 2D and position is 3D",
+                "It was randomly chosen"
+            ],
+            "correct": 1,
+            "explanation": "Specular reflections change gradually with viewing angle — they don't have pixel-sharp edges. Using too many frequencies for direction would cause flickering. Position needs high frequencies to represent sharp geometric boundaries."
+        }
+    ]
+}
