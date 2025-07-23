@@ -1,0 +1,38 @@
+{
+    "title": "Module 8: The Full Pipeline",
+    "questions": [
+        {
+            "question": "In what order does NeRF process a single pixel?",
+            "options": [
+                "MLP → Ray March → Volume Render → Camera",
+                "Camera → Coordinates → Ray March → PE → MLP → Volume Render",
+                "Volume Render → MLP → Ray March → Camera",
+                "Ray March → Camera → MLP → PE → Volume Render"
+            ],
+            "correct": 1,
+            "explanation": "The pipeline flows: Camera math (pixel→ray) → Coordinate transform (cam→world) → Ray marching (sample points) → Positional Encoding (project to high-D) → MLP (predict σ, color) → Volume rendering (blend to final pixel)."
+        },
+        {
+            "question": "Why does training NeRF from multiple camera views force the network to learn true 3D structure?",
+            "options": [
+                "Because more data always helps",
+                "Because multi-view consistency — the only way to produce correct colors from ALL angles is to learn the true 3D arrangement",
+                "Because each camera adds more parameters to the network",
+                "Because more cameras means more pixels to overfit to"
+            ],
+            "correct": 1,
+            "explanation": "If the network 'cheated' by pasting a flat image at one camera, it would produce wrong colors from other cameras, increasing the loss. The multi-view constraint forces the network to find the 3D structure that consistently explains ALL training views."
+        },
+        {
+            "question": "What is the main computational bottleneck of NeRF?",
+            "options": [
+                "Loading images from disk",
+                "Computing camera matrices",
+                "Querying the MLP tens of millions of times per image (each query requires matrix multiplications through 8 layers)",
+                "Sorting the sample points"
+            ],
+            "correct": 2,
+            "explanation": "For an 800×800 image with 128 samples per ray, NeRF must evaluate the MLP 82 million times. Each evaluation involves 8 layers of 256×256 matrix multiplications. This is ~50 billion FLOPs per frame — the reason modern methods like Instant-NGP and 3D Gaussian Splatting exist."
+        }
+    ]
+}
